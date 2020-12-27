@@ -1,0 +1,40 @@
+<mat-toolbar color="primary" class="justify-content-between">
+  <img class="logo-img" src="./../../../assets/logo/logo-only.jpg" />
+  <button mat-icon-button class="d-sm-none" (click)="emit()">
+    <mat-icon>apps</mat-icon>
+  </button>
+  <div class="row d-none d-sm-flex">
+    <div class="col-auto">
+      <button mat-raised-button>
+        <mat-icon>calendar_today</mat-icon>
+        <span>Today's Menu</span>
+      </button>
+    </div>
+    <div class="col-auto">
+      <button mat-raised-button>
+        <mat-icon>campaign</mat-icon>
+        <span>Special Deals</span>
+      </button>
+    </div>
+    <div class="col-auto">
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>person</mat-icon>
+      </button>
+    </div>
+  </div>
+</mat-toolbar>
+
+<mat-menu #menu="matMenu">
+  <button mat-menu-item>
+    <mat-icon>person</mat-icon>
+    <span>My account</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>shopping_cart</mat-icon>
+    <span>Booking History</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>login</mat-icon>
+    <span>Logout</span>
+  </button>
+</mat-menu>

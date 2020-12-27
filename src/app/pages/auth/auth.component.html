@@ -1,0 +1,64 @@
+<div
+  class="row justify-content-center align-items-center justify-content-md-around align-items-center m-0"
+>
+  <div class="col-auto">
+    <img class="auth-logo" src="./../../../assets/logo/logo-only.jpg" />
+  </div>
+  <div class="col-10 col-md-auto p-0">
+    <form
+      [formGroup]="loginForm"
+      class="pt-5 pt-sm-5 m-auto"
+      (ngSubmit)="login()"
+    >
+      <div class="form-input mt-3">
+        <input
+          type="text"
+          formControlName="email"
+          placeholder="user@example.com"
+        />
+        <mat-icon class="text-muted">mail</mat-icon>
+        <p
+          class="p-0 m-0 position-absolute text-light"
+          style="
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+          "
+          *ngIf="submitted && !loginForm.value.email"
+        >
+          Please enter the email address
+        </p>
+      </div>
+      <div class="form-input mt-3">
+        <input
+          type="{{ showLoginPassword ? 'text' : 'password' }}"
+          formControlName="password"
+          placeholder="**********"
+        />
+        <mat-icon
+          class="visibility text-muted"
+          (click)="showLoginPassword = !showLoginPassword"
+          >{{ showLoginPassword ? "visibility_off" : "visibility_on" }}
+        </mat-icon>
+        <p
+          class="p-0 m-0 position-absolute text-light"
+          style="
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+          "
+          *ngIf="submitted && !loginForm.value.password"
+        >
+          Please enter the password
+        </p>
+      </div>
+      <div class="m-3">
+        <button mat-raised-button class="m-3">
+          {{ !submitted ? "Login" : "Logging in..." }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
