@@ -14,8 +14,12 @@ import { NotificationComponent } from './shared/notification/notification.compon
 import { AppMaterialModule } from './material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { ReserveComponent } from './pages/reserve/reserve.component';
+import { LandingComponent } from './pages/landing/landing.component';
 import { TodayComponent } from './pages/today/today.component';
+import { DishComponent } from './shared/dish/dish.component';
+import { OfferComponent } from './shared/offer/offer.component';
+import { SpecialOffersComponent } from './pages/special-offers/special-offers.component';
+import { ReserveComponent } from './pages/reserve/reserve.component';
 
 @NgModule({
   declarations: [
@@ -25,8 +29,12 @@ import { TodayComponent } from './pages/today/today.component';
     HeaderComponent,
     FooterComponent,
     NotificationComponent,
-    ReserveComponent,
+    LandingComponent,
     TodayComponent,
+    DishComponent,
+    OfferComponent,
+    SpecialOffersComponent,
+    ReserveComponent,
   ],
   imports: [
     BrowserModule,

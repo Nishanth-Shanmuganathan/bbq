@@ -1,11 +1,106 @@
-<main>
-  <header>
-    <app-header></app-header>
-  </header>
-  <section class="router-outlet pb-3 pb-md-5">
-    <router-outlet></router-outlet>
-  </section>
-  <footer>
-    <app-footer></app-footer>
-  </footer>
-</main>
+<mat-sidenav-container
+  class="example-container"
+  [hasBackdrop]="true"
+  (backdropClick)="close('backdrop')"
+>
+  <mat-sidenav
+    #sidenav
+    (keydown.escape)="close('escape')"
+    disableClose
+    fixedInViewport="true"
+  >
+    <nav class="bg-dark text-light">
+      <div class="logo d-flex justify-content-center p-2 position-relative">
+        <img
+          class="m-auto"
+          src="./../../../assets/logo/circle-logo.png"
+          width="120px"
+          height="120px"
+        />
+        <button mat-icon-button (click)="close('toggle button')">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+      <mat-list role="nav">
+        <mat-list-item
+          matRipple
+          [matRippleColor]="'#ffffff1a'"
+          role="navitem"
+          class="text-light"
+          [routerLink]="['/', 'home']"
+          (click)="close()"
+          >Home</mat-list-item
+        >
+        <mat-divider></mat-divider>
+        <mat-list-item
+          matRipple
+          [matRippleColor]="'#ffffff1a'"
+          role="navitem"
+          class="text-light"
+          [routerLink]="['/', 'home', 'reserve']"
+          (click)="close()"
+          >Reservation</mat-list-item
+        >
+        <mat-divider></mat-divider>
+        <mat-list-item
+          matRipple
+          [matRippleColor]="'#ffffff1a'"
+          role="navitem"
+          class="text-light"
+          [routerLink]="['/', 'home', 'today-specials']"
+          (click)="close()"
+          >Today's Specials</mat-list-item
+        >
+        <mat-divider></mat-divider>
+        <mat-list-item
+          matRipple
+          [matRippleColor]="'#ffffff1a'"
+          role="navitem"
+          class="text-light"
+          [routerLink]="['/', 'home', 'offers']"
+          (click)="close()"
+          >Special Offers</mat-list-item
+        >
+        <mat-divider></mat-divider>
+        <mat-list-item
+          matRipple
+          [matRippleColor]="'#ffffff1a'"
+          role="navitem"
+          class="text-light"
+          >My Account</mat-list-item
+        >
+        <mat-divider></mat-divider>
+        <mat-list-item
+          matRipple
+          [matRippleColor]="'#ffffff1a'"
+          role="navitem"
+          class="text-light"
+          >History</mat-list-item
+        >
+        <mat-divider></mat-divider>
+        <mat-list-item
+          matRipple
+          [matRippleColor]="'#ffffff1a'"
+          role="navitem"
+          class="text-light"
+          >Logout</mat-list-item
+        >
+        <mat-divider></mat-divider>
+      </mat-list>
+    </nav>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <main>
+      <header>
+        <app-header (toggleEvent)="sidenav.open()"></app-header>
+      </header>
+      <section class="router-outlet">
+        <router-outlet></router-outlet>
+      </section>
+      <footer>
+        <app-footer></app-footer>
+      </footer>
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>

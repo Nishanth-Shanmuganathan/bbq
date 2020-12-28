@@ -1,0 +1,247 @@
+<div class="container-fluid main-cover position-relative">
+  <div
+    class="row align-items-center justify-content-center justify-content-md-around mt-5 mb-5 pt-1 pt-md-5 pb-3 pb-md-5"
+    style="height: fit-content"
+  >
+    <div
+      class="d-none d-md-block col-md-6 col-lg-7 col-xl-8"
+      style="width: 100%; height: fit-content"
+    >
+      <div class="wrapper pl-5">
+        <div class="card bg-dark">
+          <img src="./../../../assets/background/auth-bg.jpg" />
+          <div class="descriptions">
+            <h1>John Wick 3</h1>
+            <p>
+              After gunning down a member of the High Table -- the shadowy
+              international assassin's guild -- legendary hit man John Wick
+              finds himself stripped of the organization's protective services.
+              Now stuck with a $14 million bounty on his head, Wick must fight
+              his way through the streets of New York as he becomes the target
+              of the world's most ruthless killers.
+            </p>
+            <button class="ad-btn">
+              <i class="fab fa-youtube"></i>
+              Visit
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-auto col-md-6 col-lg-5 col-xl-4 p-0">
+      <div class="booking-card bg-light p-4 mr-md-5 ml-md-5 position-relative">
+        <h2 class="topic font-weight-bold">Let us serve you better</h2>
+        <p class="mb-1">Don’t wait in a line to enjoy your meal.</p>
+        <p>Reserve a table in advance with us.</p>
+
+        <mat-form-field color="primary" class="d-block position-relative mt-3">
+          <mat-label>Location</mat-label>
+          <mat-select>
+            <mat-option value="option">Option</mat-option>
+          </mat-select>
+          <mat-icon matSuffix class="text-muted"> location_on </mat-icon>
+        </mat-form-field>
+        <mat-form-field color="primary" class="d-block position-relative">
+          <mat-label>No. of guests</mat-label>
+          <input matInput type="number" min="1" max="9" />
+          <mat-icon matSuffix class="text-muted"> supervisor_account </mat-icon>
+        </mat-form-field>
+
+        <mat-form-field color="primary" class="d-block position-relative">
+          <mat-label>Date</mat-label>
+          <input matInput type="number" min="1" max="9" />
+          <mat-icon matSuffix class="text-muted"> date_range </mat-icon>
+        </mat-form-field>
+        <p class="text-muted">Session</p>
+        <mat-chip-list style="width: 100%">
+          <mat-chip color="warn" class="d-inline-flex">Lunch</mat-chip>
+          <mat-chip color="warn" class="d-inline-flex">Dinner</mat-chip>
+        </mat-chip-list>
+        <mat-form-field color="primary" class="d-block position-relative mt-3">
+          <mat-label>Timeslot</mat-label>
+          <mat-select>
+            <mat-option value="option">Option</mat-option>
+          </mat-select>
+          <mat-icon matSuffix class="text-muted"> schedule </mat-icon>
+        </mat-form-field>
+
+        <button
+          mat-raised-button
+          class="custom-book-table d-flex justify-content-center"
+        >
+          <img
+            src="./../../../assets/icons/dish.png"
+            width="50px"
+            height="50px"
+          />
+          <p class="mb-0 font-weight-bold">Book Table</p>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="gdlr-core-pbf-column-content clearfix mt-5">
+    <div class="gdlr-core-pbf-element">
+      <div
+        class="gdlr-core-title-item gdlr-core-item-pdb clearfix gdlr-core-center-align gdlr-core-title-item-caption-top gdlr-core-item-pdlr"
+        style="padding-bottom: 25px"
+      >
+        <div class="gdlr-core-title-item-title-wrap">
+          <h1
+            class="gdlr-core-title-item-title gdlr-core-skin-title"
+            style="
+              font-size: 35px;
+              font-weight: 600;
+              letter-spacing: 0px;
+              text-transform: none;
+              color: #fff;
+            "
+          >
+            Today's Special<span
+              class="gdlr-core-title-item-title-divider gdlr-core-skin-divider"
+            ></span>
+          </h1>
+        </div>
+      </div>
+    </div>
+    <div class="gdlr-core-pbf-element">
+      <div
+        class="gdlr-core-divider-item gdlr-core-divider-item-normal gdlr-core-item-pdlr gdlr-core-center-align"
+      >
+        <div class="gdlr-core-divider-container" style="max-width: 35px">
+          <div
+            class="gdlr-core-divider-line gdlr-core-skin-divider"
+            style="
+              border-color: #8c8c8c;
+              border-width: 3px;
+              width: 100px;
+              transform: translateX(-50%);
+            "
+          ></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 d-flex flex-wrap justify-content-center">
+    <app-dish [small]="false"></app-dish>
+    <app-dish [small]="false"></app-dish>
+    <app-dish [small]="false"></app-dish>
+  </div>
+</div>
+<div class="row pb-5">
+  <div class="gdlr-core-pbf-column-content clearfix mt-5">
+    <div class="gdlr-core-pbf-element">
+      <div
+        class="gdlr-core-title-item gdlr-core-item-pdb clearfix gdlr-core-center-align gdlr-core-title-item-caption-top gdlr-core-item-pdlr"
+        style="padding-bottom: 25px"
+      >
+        <div class="gdlr-core-title-item-title-wrap">
+          <h1
+            class="gdlr-core-title-item-title gdlr-core-skin-title"
+            style="
+              font-size: 35px;
+              font-weight: 600;
+              letter-spacing: 0px;
+              text-transform: none;
+              color: #fff;
+            "
+          >
+            Special Offers<span
+              class="gdlr-core-title-item-title-divider gdlr-core-skin-divider"
+            ></span>
+          </h1>
+        </div>
+      </div>
+    </div>
+    <div class="gdlr-core-pbf-element">
+      <div
+        class="gdlr-core-divider-item gdlr-core-divider-item-normal gdlr-core-item-pdlr gdlr-core-center-align"
+      >
+        <div class="gdlr-core-divider-container" style="max-width: 35px">
+          <div
+            class="gdlr-core-divider-line gdlr-core-skin-divider"
+            style="
+              border-color: #8c8c8c;
+              border-width: 3px;
+              width: 100px;
+              transform: translateX(-50%);
+            "
+          ></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 d-flex flex-wrap justify-content-center">
+    <div class="content-wrapper">
+      <div class="news-card">
+        <a href="#" class="news-card__card-link"></a>
+        <img
+          src="./../../../assets/offs/chirtmas.jpg"
+          alt="Christmas off"
+          class="news-card__image"
+        />
+        <div class="news-card__text-wrapper">
+          <h2 class="news-card__title">Amazing First Title</h2>
+          <div class="news-card__post-date">Jan 29, 2018</div>
+          <div class="news-card__details-wrapper">
+            <p class="news-card__excerpt">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Est
+              pariatur nemo tempore repellat? Ullam sed officia iure architecto
+              deserunt distinctio, pariatur&hellip;
+            </p>
+            <a href="#" class="news-card__read-more"
+              >Read more <i class="fas fa-long-arrow-alt-right"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="news-card">
+        <a href="#" class="news-card__card-link"></a>
+        <img
+          src="./../../../assets/offs/christmas-2.jpg"
+          alt=""
+          class="news-card__image"
+        />
+        <div class="news-card__text-wrapper">
+          <h2 class="news-card__title">
+            Amazing Second Title that is Quite Long
+          </h2>
+          <div class="news-card__post-date">Jan 29, 2018</div>
+          <div class="news-card__details-wrapper">
+            <p class="news-card__excerpt">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam
+              obcaecati ex natus nulla rem sequi laborum quod fugit&hellip;
+            </p>
+            <a href="#" class="news-card__read-more"
+              >Read more <i class="fas fa-long-arrow-alt-right"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="news-card">
+        <a href="#" class="news-card__card-link"></a>
+        <img
+          src="./../../../assets/offs/new-year.jpg"
+          alt=""
+          class="news-card__image"
+        />
+        <div class="news-card__text-wrapper">
+          <h2 class="news-card__title">Amazing Title</h2>
+          <div class="news-card__post-date">Jan 29, 2018</div>
+          <div class="news-card__details-wrapper">
+            <p class="news-card__excerpt">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis
+              beatae&hellip;
+            </p>
+            <a href="#" class="news-card__read-more"
+              >Read more <i class="fas fa-long-arrow-alt-right"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

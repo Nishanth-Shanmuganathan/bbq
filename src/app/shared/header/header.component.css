@@ -1,7 +1,13 @@
 :host {
   display: block;
-  height: 150px;
+  height: 120px;
   background: #181818;
+}
+
+@media only screen and (max-width:575px) {
+  :host {
+    height: 100px;
+  }
 }
 
 mat-toolbar {
@@ -11,6 +17,49 @@ mat-toolbar {
 
 .logo-img {
   width: 20vw;
-  max-width: 150px;
+  max-width: 120px;
   min-width: 100px;
+}
+
+.nav-item {
+  width: fit-content;
+  max-width: 150px;
+  text-transform: uppercase;
+}
+
+a,
+a:hover,
+a:active {
+  color: white;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.active {
+  font-weight: bold;
+}
+
+hr {
+  display: none;
+  animation: hr ease-in-out 300ms;
+}
+
+@keyframes hr {
+  0% {
+    border: 0px;
+  }
+
+  100% {
+    border: 5px solid white;
+    border-radius: 20px;
+  }
+}
+
+.active hr.position-absolute {
+  display: block;
+  left: 50%;
+  bottom: -20px;
+  transform: translateX(-50%);
+  border: 5px solid white;
+  border-radius: 20px;
 }

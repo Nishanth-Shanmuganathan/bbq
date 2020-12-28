@@ -1,1 +1,35 @@
-<p>today works!</p>
+<div class="row justify-content-center align-items-center pt-5 m-0">
+  <div class="col-12 col-sm-10 row justify-content-center">
+    <div class="search-bar m-3 col-12 col-sm-10 col-md-5">
+      <input
+        class="p-3"
+        type="text"
+        [matAutocomplete]="auto"
+        placeholder="Enter the location..."
+        (input)="searchCity($event)"
+        [(ngModel)]="cityName"
+      />
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option
+          *ngFor="let city of cities"
+          [value]="city"
+          (click)="validateCity(city)"
+        >
+          {{ city }}
+        </mat-option>
+      </mat-autocomplete>
+      <button mat-icon-button [ngClass]="{ rotate: isCityLoading }">
+        <mat-icon *ngIf="!isCityLoading">place</mat-icon>
+        <mat-icon *ngIf="isCityLoading" class="rotate"
+          >hourglass_bottom</mat-icon
+        >
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="row justify-content-center m-0">
+  <div class="col-auto" *ngFor="let item of ['', '', '', '', '', '', '', '']">
+    <app-dish></app-dish>
+  </div>
+</div>

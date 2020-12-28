@@ -1,0 +1,151 @@
+.main-cover {
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  /* background-image: radial-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.9)), url(./../../../assets/background/green_1.jpg); */
+  /* background-image: url(./../../../assets/video/bg-1.gif); */
+  background-size: cover;
+  /* backdrop-filter: blur(10px); */
+}
+
+.booking-card {
+  width: 50vw;
+  min-width: 300px;
+  max-width: 350px;
+  padding-bottom: 60px !important;
+  border-radius: 10px;
+}
+
+.booking-control {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.booking-control .input {
+  width: 100%;
+  height: 50px;
+  border: none;
+  border-radius: 125px;
+  box-shadow: inset 1px 1px 5px black, 2px 2px 3px silver;
+  text-align: center;
+}
+
+.booking-control .label {
+  color: grey;
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  font-size: 16px;
+  z-index: 0;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.div-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.line {
+  flex: 1;
+}
+
+.text {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+/* ::ng-deep tr.ng-star-inserted:first-child {
+  position: absolute;
+  top: -10px;
+}
+
+::ng-deep tr.ng-star-inserted:last-child {
+  position: absolute;
+  top: 40px;
+} */
+.custom-book-table {
+  width: 100px;
+  height: 100px;
+  border-radius: 125px;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  background-color: orange;
+}
+
+/* .explore {
+  width: 200px;
+  height: 200px;
+  background-color: orange;
+  clip-path: polygon(100% 50%, 84.70057014808336% 54.5684167277018%, 91.0518476172854% 60.99980941685713%, 82.33578363789503% 63.39392013277814%, 93.30127018922194% 75%, 77.76736691019323% 71.30665001530522%, 80.05203820042827% 80.05203820042827%, 71.30665001530522% 77.76736691019323%, 75% 93.30127018922192%, 63.39392013277814% 82.33578363789503%, 60.99980941685714% 91.0518476172854%, 54.56841672770181% 84.70057014808336%, 50% 100%, 45.4315832722982% 84.70057014808336%, 39.00019058314287% 91.0518476172854%, 36.60607986722187% 82.33578363789505%, 25.00000000000001% 93.30127018922194%, 28.69334998469479% 77.76736691019323%, 19.94796179957173% 80.05203820042827%, 22.23263308980677% 71.30665001530522%, 6.698729810778076% 75.00000000000001%, 17.66421636210497% 63.39392013277815%, 8.948152382714603% 60.99980941685715%, 15.29942985191663% 54.56841672770182%, 0% 50.00000000000001%, 15.29942985191663% 45.43158327229821%, 8.948152382714589% 39.00019058314288%, 17.66421636210496% 36.60607986722188%, 6.698729810778062% 25.00000000000001%, 22.23263308980676% 28.69334998469479%, 19.94796179957171% 19.94796179957175%, 28.69334998469477% 22.23263308980678%, 24.99999999999998% 6.698729810778083%, 36.60607986722184% 17.66421636210497%, 39.00019058314284% 8.948152382714603%, 45.43158327229816% 15.29942985191664%, 49.99999999999999% 0%, 54.56841672770179% 15.29942985191663%, 60.99980941685711% 8.948152382714589%, 63.39392013277812% 17.66421636210496%, 74.99999999999997% 6.698729810778048%, 71.30665001530519% 22.23263308980675%, 80.05203820042826% 19.94796179957172%, 77.76736691019323% 28.69334998469477%, 93.30127018922192% 24.99999999999998%, 82.33578363789502% 36.60607986722184%, 91.0518476172854% 39.00019058314283%, 84.70057014808336% 45.43158327229816%);
+
+} */
+
+.loading img,
+.not-found img {
+  width: 70%;
+  max-width: 350px;
+  min-width: 280px;
+  margin: 20px;
+}
+
+.mat-raised-button.mat-button-disabled {
+  background-color: silver;
+  color: black;
+}
+
+mat-chip {
+  cursor: pointer;
+}
+
+.dish-search {
+  width: 100%;
+  height: 50px;
+  border: none;
+  border-radius: 50px;
+  box-shadow: inset 5px 5px 5px silver,
+    1px 1px 2px silver;
+
+}
+
+.dish-search-cover button[mat-icon-button] {
+  position: absolute;
+  top: 5px;
+  right: 20px;
+}
+
+.cart-cover {
+  top: 50px;
+  right: 50px;
+  z-index: 10;
+}
+
+::ng-deep .mat-select-arrow {
+  display: none;
+}
+
+.container-fluid {
+  background-image: radial-gradient(rgba(0, 0, 0, 0.5), rgb(0, 0, 0)), url(./../../../assets/background/auth-bg.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+/* Ad card */

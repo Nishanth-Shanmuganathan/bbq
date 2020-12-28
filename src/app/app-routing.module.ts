@@ -1,5 +1,7 @@
-import { TodayComponent } from './pages/today/today.component';
 import { ReserveComponent } from './pages/reserve/reserve.component';
+import { SpecialOffersComponent } from './pages/special-offers/special-offers.component';
+import { TodayComponent } from './pages/today/today.component';
+import { LandingComponent } from './pages/landing/landing.component';
 import { AuthGuard } from './services/auth.gaurd';
 import { HomeComponent } from './pages/home/home.component';
 import { AuthComponent } from './pages/auth/auth.component';
@@ -12,21 +14,33 @@ const routes: Routes = [
     component: AuthComponent
   },
   {
-    path: '',
-    pathMatch: 'full',
+    path: 'home',
     component: HomeComponent,
     canActivate: [AuthGuard],
     children: [
       {
         path: '',
         pathMatch: "prefix",
+        component: LandingComponent
+      },
+      {
+        path: 'reserve',
         component: ReserveComponent
       },
       {
-        path: 'today-picks',
+        path: 'today-specials',
         component: TodayComponent
-      }
+      },
+      {
+        path: 'offers',
+        component: SpecialOffersComponent
+      },
     ]
+  },
+  {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'home'
   }
 ];
 

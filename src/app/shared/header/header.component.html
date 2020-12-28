@@ -1,26 +1,48 @@
 <mat-toolbar color="primary" class="justify-content-between">
   <img class="logo-img" src="./../../../assets/logo/logo-only.jpg" />
   <button mat-icon-button class="d-sm-none" (click)="emit()">
-    <mat-icon>apps</mat-icon>
+    <mat-icon>menu</mat-icon>
   </button>
-  <div class="row d-none d-sm-flex">
-    <div class="col-auto">
-      <button mat-raised-button>
-        <mat-icon>calendar_today</mat-icon>
-        <span>Today's Menu</span>
-      </button>
-    </div>
-    <div class="col-auto">
-      <button mat-raised-button>
-        <mat-icon>campaign</mat-icon>
-        <span>Special Deals</span>
-      </button>
-    </div>
-    <div class="col-auto">
-      <button mat-icon-button [matMenuTriggerFor]="menu">
-        <mat-icon>person</mat-icon>
-      </button>
-    </div>
+  <div
+    class="row nav d-none d-sm-flex flex-nowrap justify-content-around align-items-baseline"
+    style="width: 75%; max-width: 700px"
+  >
+    <a
+      class="col-auto nav-item position-relative"
+      [routerLink]="['/', 'home']"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      Home
+      <hr class="position-absolute" />
+    </a>
+    <a
+      class="col-auto nav-item"
+      [routerLink]="['/', 'home', 'reserve']"
+      routerLinkActive="active"
+    >
+      Reservation
+      <hr class="position-absolute" />
+    </a>
+    <a
+      class="col-auto nav-item"
+      [routerLink]="['/', 'home', 'today-specials']"
+      routerLinkActive="active"
+    >
+      Today's Specials
+      <hr class="position-absolute" />
+    </a>
+    <a
+      class="col-auto nav-item"
+      [routerLink]="['/', 'home', 'offers']"
+      routerLinkActive="active"
+    >
+      Special Offers
+      <hr class="position-absolute" />
+    </a>
+    <button class="col-auto" mat-icon-button [mat-menu-trigger-for]="menu">
+      <mat-icon>person</mat-icon>
+    </button>
   </div>
 </mat-toolbar>
 
