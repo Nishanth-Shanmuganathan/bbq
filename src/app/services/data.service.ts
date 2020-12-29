@@ -25,6 +25,10 @@ export class DataService {
       }))
   }
 
+  todayDishesOfSelectedCity(city: any) {
+    return this.http.post<any[]>(environment.SERVER_URL + 'server/dishes', city)
+  }
+
   getOffersFromServer() {
     return this.http.get<{ seasonalOffers: any[], offers: any[] }>(environment.SERVER_URL + 'server/offers')
       .pipe(tap(res => {

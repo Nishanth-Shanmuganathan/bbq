@@ -8,9 +8,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./today.component.css']
 })
 export class TodayComponent implements OnInit {
-  cityName!: string
+  city!: string
   isCityLoading!: boolean;
-  cities!: string[]
+  cities!: any[]
   dishes: any[]
   availableLocations: any[]
   isLoading: boolean
@@ -52,13 +52,15 @@ export class TodayComponent implements OnInit {
   }
 
   validateCity(city: string) {
+    if (!city) {
+      this.dishes = this.dataService.dishes
+    }
     if (this.cities.includes(city)) {
-      this.cityName = city
-      //   this.dataService.fetchHotelInCity(this.cityName)
-      //   this.isHotelLoading.next(true)
-      //   this.cityName = ''
-      // } else {
-      //   this.cityName = ''
+      this.city = city
+      this.dataService.todayDishesOfSelectedCity(this.city)
+        .subscribe(res => {
+          this.dishes = res
+        })
     }
   }
 }

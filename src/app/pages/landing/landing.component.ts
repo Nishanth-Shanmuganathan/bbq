@@ -77,7 +77,10 @@ export class LandingComponent implements OnInit {
   }
 
   updateLocation(_id: string) {
-    this.booking.location = this.availableLocations.find(ele => ele._id === _id)
+    const location = this.availableLocations.find(ele => ele._id === _id)
+    if (location) {
+      this.booking.location = location
+    }
     this.updateBookingDetails()
   }
 

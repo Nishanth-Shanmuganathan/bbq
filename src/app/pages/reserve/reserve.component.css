@@ -174,16 +174,24 @@ mat-expansion-panel {
   z-index: 10;
 }
 
-.confirmation,
+.confirmation {
+  background: radial-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)),
+    url(./../../../assets/background/confirmation-bg.jpg);
+}
+
 .main {
+  width: 100%;
+  min-height: 100vh;
   background: radial-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)),
     url(./../../../assets/background/reserve-bg.jpg);
+}
+
+.confirmation,
+.main {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   color: white;
-  width: 100%;
-  min-height: 100vh;
 }
 
 .address {

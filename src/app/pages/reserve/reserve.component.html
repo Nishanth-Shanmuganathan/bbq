@@ -1,4 +1,8 @@
-<mat-sidenav-container class="main" (window:resize)="validatePlatform()">
+<mat-sidenav-container
+  class="main"
+  (window:resize)="validatePlatform()"
+  *ngIf="!isLoading"
+>
   <mat-sidenav
     #sidenav
     disableClose
@@ -24,11 +28,11 @@
           </div>
           <p class="d-flex align-items-center">
             <mat-icon class="mr-2">date_range</mat-icon>
-            {{ "28 September,2021" | date }}
+            {{ booking.date | date }}
           </p>
           <p class="d-flex align-items-center">
             <mat-icon class="mr-2">schedule</mat-icon>
-            {{ "28 September,2021" | date }}
+            {{ booking.timeslot }}
           </p>
         </div>
         <div class="col-12">
@@ -36,15 +40,15 @@
             <table style="width: 100%" cellpadding="20px">
               <tr>
                 <td class="font-weight-bold">No. of guests</td>
-                <td>9*500</td>
+                <td>{{ booking.guests }}*500</td>
                 <td class="text-right font-weight-bold">
-                  {{ 5000 | currency }}
+                  {{ (booking.guests ? booking.guests : 0) * 500 | currency }}
                 </td>
               </tr>
               <tr>
                 <td class="font-weight-bold">Sub Total</td>
                 <td colspan="2" class="text-right font-weight-bold">
-                  {{ 5000 | currency }}
+                  {{ booking.total | currency }}
                 </td>
               </tr>
             </table>
@@ -59,7 +63,7 @@
               >
                 <span>Total</span>
                 <span class="font-weight-bold" style="font-size: 16px">{{
-                  6000 | currency
+                  booking.total | currency
                 }}</span>
               </div>
             </div>
@@ -96,18 +100,11 @@
             <mat-tab label="Veg" class="">
               <mat-accordion>
                 <mat-expansion-panel
-                  *ngFor="let item of data"
-                  [ngClass]="{ 'disabled-pointer': !item.sub.length }"
-                  [hideToggle]="!item.sub.length"
+                  *ngFor="let item of cuisines; let i = index"
+                  [expanded]="i === 0"
                 >
                   <mat-expansion-panel-header>
-                    <img
-                      src="./../../../assets/logo/circle-logo.png"
-                      width="40px"
-                      height="40px"
-                      style="position: absolute; left: 5px; top: 5px"
-                    />
-                    <mat-panel-title class="pl-5">
+                    <mat-panel-title>
                       {{ item.dish | titlecase }}
                     </mat-panel-title>
                     <mat-panel-description *ngIf="item.sub.length">
@@ -116,12 +113,12 @@
                   </mat-expansion-panel-header>
                   <mat-expansion-panel
                     *ngFor="let subItem of item.sub"
-                    [ngClass]="{ 'disabled-pointer': !subItem.sub.length }"
-                    [hideToggle]="!subItem.sub.length"
+                    class="disabled-pointer"
+                    [hideToggle]="true"
                   >
                     <mat-expansion-panel-header>
                       <img
-                        src="./../../../assets/background/home-bg.jpeg"
+                        [src]="subItem.imageUrl"
                         width="40px"
                         height="40px"
                         style="position: absolute; left: 5px; top: 5px"
@@ -129,32 +126,7 @@
                       <mat-panel-title class="pl-5">
                         {{ subItem.dish | titlecase }}
                       </mat-panel-title>
-                      <mat-panel-description *ngIf="subItem.sub.length">
-                        {{ subItem.sub.length }} items
-                      </mat-panel-description>
                     </mat-expansion-panel-header>
-                    <mat-expansion-panel
-                      *ngFor="let miniSubItem of subItem.sub"
-                      [ngClass]="{
-                        'disabled-pointer': !miniSubItem.sub.length
-                      }"
-                      [hideToggle]="!miniSubItem.sub.length"
-                    >
-                      <mat-expansion-panel-header>
-                        <img
-                          src="./../../../assets/logo/circle-logo.png"
-                          width="40px"
-                          height="40px"
-                          style="position: absolute; left: 5px; top: 5px"
-                        />
-                        <mat-panel-title class="pl-5">
-                          {{ miniSubItem.dish | titlecase }}
-                        </mat-panel-title>
-                        <mat-panel-description *ngIf="miniSubItem.sub.length">
-                          {{ miniSubItem.sub.length }} items
-                        </mat-panel-description>
-                      </mat-expansion-panel-header>
-                    </mat-expansion-panel>
                   </mat-expansion-panel>
                 </mat-expansion-panel>
               </mat-accordion>
@@ -162,18 +134,11 @@
             <mat-tab label="Non Veg">
               <mat-accordion>
                 <mat-expansion-panel
-                  *ngFor="let item of data"
-                  [ngClass]="{ 'disabled-pointer': !item.sub.length }"
-                  [hideToggle]="!item.sub.length"
+                  *ngFor="let item of cuisines; let i = index"
+                  [expanded]="i === 0"
                 >
                   <mat-expansion-panel-header>
-                    <img
-                      src="./../../../assets/logo/circle-logo.png"
-                      width="40px"
-                      height="40px"
-                      style="position: absolute; left: 5px; top: 5px"
-                    />
-                    <mat-panel-title class="pl-5">
+                    <mat-panel-title>
                       {{ item.dish | titlecase }}
                     </mat-panel-title>
                     <mat-panel-description *ngIf="item.sub.length">
@@ -182,12 +147,12 @@
                   </mat-expansion-panel-header>
                   <mat-expansion-panel
                     *ngFor="let subItem of item.sub"
-                    [ngClass]="{ 'disabled-pointer': !subItem.sub.length }"
-                    [hideToggle]="!subItem.sub.length"
+                    class="disabled-pointer"
+                    [hideToggle]="true"
                   >
                     <mat-expansion-panel-header>
                       <img
-                        src="./../../../assets/background/home-bg.jpeg"
+                        [src]="subItem.imageUrl"
                         width="40px"
                         height="40px"
                         style="position: absolute; left: 5px; top: 5px"
@@ -195,32 +160,7 @@
                       <mat-panel-title class="pl-5">
                         {{ subItem.dish | titlecase }}
                       </mat-panel-title>
-                      <mat-panel-description *ngIf="subItem.sub.length">
-                        {{ subItem.sub.length }} items
-                      </mat-panel-description>
                     </mat-expansion-panel-header>
-                    <mat-expansion-panel
-                      *ngFor="let miniSubItem of subItem.sub"
-                      [ngClass]="{
-                        'disabled-pointer': !miniSubItem.sub.length
-                      }"
-                      [hideToggle]="!miniSubItem.sub.length"
-                    >
-                      <mat-expansion-panel-header>
-                        <img
-                          src="./../../../assets/logo/circle-logo.png"
-                          width="40px"
-                          height="40px"
-                          style="position: absolute; left: 5px; top: 5px"
-                        />
-                        <mat-panel-title class="pl-5">
-                          {{ miniSubItem.dish | titlecase }}
-                        </mat-panel-title>
-                        <mat-panel-description *ngIf="miniSubItem.sub.length">
-                          {{ miniSubItem.sub.length }} items
-                        </mat-panel-description>
-                      </mat-expansion-panel-header>
-                    </mat-expansion-panel>
                   </mat-expansion-panel>
                 </mat-expansion-panel>
               </mat-accordion>

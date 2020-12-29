@@ -5,6 +5,7 @@ export class BookingDetails {
     public location: { name: string, _id: string },
     public date: string,
     public session: string,
-    public timeslot: string
+    public timeslot: string,
+    public total?: number
   ) { }
 }

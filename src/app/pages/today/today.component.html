@@ -10,12 +10,13 @@
         [matAutocomplete]="auto"
         placeholder="Enter the location..."
         (input)="searchCity($event)"
-        [(ngModel)]="cityName"
+        #search
+        (keyup)="validateCity(search.value)"
       />
       <mat-autocomplete #auto="matAutocomplete">
         <mat-option
           *ngFor="let city of cities"
-          [value]="city"
+          [value]="city.name"
           (click)="validateCity(city)"
         >
           {{ city.name }}
