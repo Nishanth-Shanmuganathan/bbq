@@ -18,15 +18,18 @@ export class LandingComponent implements OnInit {
   booking: BookingDetails
   availableLocations!: { name: string, _id: string }[]
   availableTimeslots!: string[]
+  isLoading: boolean
 
   constructor(
     private homeService: HomeService,
     private router: Router
   ) {
     this.now = new Date()
+    this.isLoading = true
     this.newHotel = this.homeService.newHotel
     this.topTodaySpecial = this.homeService.topTodaySpecial
     this.specialOffers = this.homeService.specialOffers
+    this.isLoading = !this.newHotel && !this.topTodaySpecial.length && !this.specialOffers.length
     this.booking = this.homeService.reserveService.getBookingDetails()
     this.availableLocations = this.homeService.reserveService.getLocations()
   }
@@ -40,8 +43,12 @@ export class LandingComponent implements OnInit {
 
 
     if (!this.newHotel || !this.specialOffers.length || !this.topTodaySpecial.length) {
+      this.isLoading = true
       this.homeService.homePageData()
         .subscribe(res => {
+          console.log('land received');
+
+          this.isLoading = false
           this.newHotel = res.newHotel
           this.topTodaySpecial = res.topTodaySpecial
           this.specialOffers = res.specialOffers

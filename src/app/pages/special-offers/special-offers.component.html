@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" *ngIf="!isLoading && seasonalOffers.length">
   <div class="gdlr-core-pbf-column-content clearfix mt-5">
     <div class="gdlr-core-pbf-element">
       <div
@@ -36,12 +36,15 @@
     </div>
   </div>
 </div>
-<div class="row justify-content-center">
-  <div class="col-auto" *ngFor="let item of ['', '', '']">
-    <app-offer></app-offer>
+<div
+  class="row justify-content-center"
+  *ngIf="!isLoading && seasonalOffers.length"
+>
+  <div class="col-auto" *ngFor="let offer of seasonalOffers">
+    <app-offer [offer]="offer"></app-offer>
   </div>
 </div>
-<div class="row">
+<div class="row" *ngIf="!isLoading && offers.length">
   <div class="gdlr-core-pbf-column-content clearfix mt-5">
     <div class="gdlr-core-pbf-element">
       <div
@@ -79,8 +82,35 @@
     </div>
   </div>
 </div>
-<div class="row justify-content-center">
+<div class="row justify-content-center" *ngIf="!isLoading && offers.length">
+  <div class="col-auto" *ngFor="let offer of offers">
+    <app-offer [offer]="offer"></app-offer>
+  </div>
+</div>
+
+<div
+  class="row justify-content-center align-items-center loading-indicator m-0"
+  *ngIf="isLoading"
+>
   <div class="col-auto">
-    <app-offer></app-offer>
+    <div class="body">
+      <span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+      <div class="base">
+        <span></span>
+        <div class="face"></div>
+      </div>
+    </div>
+    <div class="longfazers">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <h3 class="font-weight-bold">Fetching resources...</h3>
   </div>
 </div>

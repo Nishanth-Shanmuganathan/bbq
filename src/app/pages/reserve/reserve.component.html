@@ -90,7 +90,7 @@
       class="cart-section d-flex justify-content-around align-items-center pb-2 position-relative"
     >
       <div class="cart-details" *ngIf="!mobileBookingTableVisibility">
-        <div class="scroll-content p-5">
+        <div class="scroll-content pt-5 pb-5 pl-1 pr-1 p-sm-5">
           <h1 class="font-weight-bold mt-5 mb-2">Cuisines</h1>
           <mat-tab-group mat-align-tabs="center" color="accent">
             <mat-tab label="Veg" class="">
@@ -101,7 +101,18 @@
                   [hideToggle]="!item.sub.length"
                 >
                   <mat-expansion-panel-header>
-                    {{ item.dish }}
+                    <img
+                      src="./../../../assets/logo/circle-logo.png"
+                      width="40px"
+                      height="40px"
+                      style="position: absolute; left: 5px; top: 5px"
+                    />
+                    <mat-panel-title class="pl-5">
+                      {{ item.dish | titlecase }}
+                    </mat-panel-title>
+                    <mat-panel-description *ngIf="item.sub.length">
+                      {{ item.sub.length }} items
+                    </mat-panel-description>
                   </mat-expansion-panel-header>
                   <mat-expansion-panel
                     *ngFor="let subItem of item.sub"
@@ -109,7 +120,18 @@
                     [hideToggle]="!subItem.sub.length"
                   >
                     <mat-expansion-panel-header>
-                      {{ subItem.dish }}
+                      <img
+                        src="./../../../assets/background/home-bg.jpeg"
+                        width="40px"
+                        height="40px"
+                        style="position: absolute; left: 5px; top: 5px"
+                      />
+                      <mat-panel-title class="pl-5">
+                        {{ subItem.dish | titlecase }}
+                      </mat-panel-title>
+                      <mat-panel-description *ngIf="subItem.sub.length">
+                        {{ subItem.sub.length }} items
+                      </mat-panel-description>
                     </mat-expansion-panel-header>
                     <mat-expansion-panel
                       *ngFor="let miniSubItem of subItem.sub"
@@ -119,7 +141,18 @@
                       [hideToggle]="!miniSubItem.sub.length"
                     >
                       <mat-expansion-panel-header>
-                        {{ miniSubItem.dish }}
+                        <img
+                          src="./../../../assets/logo/circle-logo.png"
+                          width="40px"
+                          height="40px"
+                          style="position: absolute; left: 5px; top: 5px"
+                        />
+                        <mat-panel-title class="pl-5">
+                          {{ miniSubItem.dish | titlecase }}
+                        </mat-panel-title>
+                        <mat-panel-description *ngIf="miniSubItem.sub.length">
+                          {{ miniSubItem.sub.length }} items
+                        </mat-panel-description>
                       </mat-expansion-panel-header>
                     </mat-expansion-panel>
                   </mat-expansion-panel>
@@ -134,7 +167,18 @@
                   [hideToggle]="!item.sub.length"
                 >
                   <mat-expansion-panel-header>
-                    {{ item.dish }}
+                    <img
+                      src="./../../../assets/logo/circle-logo.png"
+                      width="40px"
+                      height="40px"
+                      style="position: absolute; left: 5px; top: 5px"
+                    />
+                    <mat-panel-title class="pl-5">
+                      {{ item.dish | titlecase }}
+                    </mat-panel-title>
+                    <mat-panel-description *ngIf="item.sub.length">
+                      {{ item.sub.length }} items
+                    </mat-panel-description>
                   </mat-expansion-panel-header>
                   <mat-expansion-panel
                     *ngFor="let subItem of item.sub"
@@ -142,7 +186,18 @@
                     [hideToggle]="!subItem.sub.length"
                   >
                     <mat-expansion-panel-header>
-                      {{ subItem.dish }}
+                      <img
+                        src="./../../../assets/background/home-bg.jpeg"
+                        width="40px"
+                        height="40px"
+                        style="position: absolute; left: 5px; top: 5px"
+                      />
+                      <mat-panel-title class="pl-5">
+                        {{ subItem.dish | titlecase }}
+                      </mat-panel-title>
+                      <mat-panel-description *ngIf="subItem.sub.length">
+                        {{ subItem.sub.length }} items
+                      </mat-panel-description>
                     </mat-expansion-panel-header>
                     <mat-expansion-panel
                       *ngFor="let miniSubItem of subItem.sub"
@@ -152,7 +207,18 @@
                       [hideToggle]="!miniSubItem.sub.length"
                     >
                       <mat-expansion-panel-header>
-                        {{ miniSubItem.dish }}
+                        <img
+                          src="./../../../assets/logo/circle-logo.png"
+                          width="40px"
+                          height="40px"
+                          style="position: absolute; left: 5px; top: 5px"
+                        />
+                        <mat-panel-title class="pl-5">
+                          {{ miniSubItem.dish | titlecase }}
+                        </mat-panel-title>
+                        <mat-panel-description *ngIf="miniSubItem.sub.length">
+                          {{ miniSubItem.sub.length }} items
+                        </mat-panel-description>
                       </mat-expansion-panel-header>
                     </mat-expansion-panel>
                   </mat-expansion-panel>
@@ -279,6 +345,7 @@
             mat-raised-button
             class="custom-book-table d-flex justify-content-center"
             [disabled]="!bookingValid()"
+            (click)="proceedBooking()"
           >
             <img
               src="./../../../assets/icons/dish.png"
@@ -292,3 +359,30 @@
     </section>
   </mat-sidenav-content>
 </mat-sidenav-container>
+
+<div
+  class="row justify-content-center align-items-center loading-indicator m-0"
+  *ngIf="isLoading"
+>
+  <div class="col-auto">
+    <div class="body">
+      <span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+      <div class="base">
+        <span></span>
+        <div class="face"></div>
+      </div>
+    </div>
+    <div class="longfazers">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <h3 class="font-weight-bold">Fetching resources...</h3>
+  </div>
+</div>

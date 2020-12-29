@@ -137,7 +137,7 @@ mat-chip {
 }
 
 .container-fluid {
-  background-image: radial-gradient(rgba(0, 0, 0, 0.5), rgb(0, 0, 0)), url(./../../../assets/background/auth-bg.jpg);
+  background-image: radial-gradient(rgba(0, 0, 0, 0.5), rgb(0, 0, 0)), url(./../../../assets/background/home-bg.jpeg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;

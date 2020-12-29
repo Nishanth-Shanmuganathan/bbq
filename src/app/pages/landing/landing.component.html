@@ -1,4 +1,7 @@
-<div class="container-fluid main-cover position-relative">
+<div
+  class="container-fluid main-cover position-relative"
+  *ngIf="!isLoading && newHotel"
+>
   <div
     class="row align-items-center justify-content-center justify-content-md-around mt-5 mb-5 pt-1 pt-md-5 pb-3 pb-md-5"
     style="height: fit-content"
@@ -110,6 +113,7 @@
           mat-raised-button
           class="custom-book-table d-flex justify-content-center"
           [disabled]="!bookingValid()"
+          (click)="routeToReserve(booking.location._id)"
         >
           <img
             src="./../../../assets/icons/dish.png"
@@ -122,7 +126,7 @@
     </div>
   </div>
 </div>
-<div class="row">
+<div class="row" *ngIf="!isLoading && topTodaySpecial.length">
   <div class="gdlr-core-pbf-column-content clearfix mt-5">
     <div class="gdlr-core-pbf-element">
       <div
@@ -165,10 +169,7 @@
       </div>
     </div>
   </div>
-  <div
-    class="col-12 d-flex flex-wrap justify-content-center"
-    *ngIf="topTodaySpecial.length"
-  >
+  <div class="col-12 d-flex flex-wrap justify-content-center">
     <app-dish
       [small]="false"
       *ngFor="let todaySpecial of topTodaySpecial"
@@ -176,7 +177,7 @@
     ></app-dish>
   </div>
 </div>
-<div class="row pb-5">
+<div class="row pb-5" *ngIf="!isLoading && specialOffers.length">
   <div class="gdlr-core-pbf-column-content clearfix mt-5">
     <div class="gdlr-core-pbf-element">
       <div
@@ -220,11 +221,38 @@
     </div>
   </div>
   <div class="col-12 d-flex flex-wrap justify-content-center">
-    <div class="content-wrapper" *ngIf="specialOffers.length">
+    <div class="content-wrapper">
       <app-offer
         *ngFor="let offer of specialOffers"
         [offer]="offer"
       ></app-offer>
     </div>
+  </div>
+</div>
+
+<div
+  class="row justify-content-center align-items-center loading-indicator m-0"
+  *ngIf="isLoading"
+>
+  <div class="col-auto">
+    <div class="body">
+      <span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+      <div class="base">
+        <span></span>
+        <div class="face"></div>
+      </div>
+    </div>
+    <div class="longfazers">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <h3 class="font-weight-bold">Fetching resources...</h3>
   </div>
 </div>

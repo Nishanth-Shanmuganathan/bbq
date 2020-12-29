@@ -2,14 +2,15 @@
   <img [src]="offer.imageUrl" alt="Christmas off" class="news-card__image" />
   <div class="news-card__text-wrapper">
     <h2 class="news-card__title">{{ offer.name | titlecase }}</h2>
-    <div class="news-card__post-date">
+    <div class="news-card__post-date" *ngIf="offer.validTill">
       Expires on {{ offer.validTill | date }}
     </div>
+    <div class="news-card__post-date" *ngIf="!offer.validTill">Available*</div>
     <div class="news-card__details-wrapper">
       <p class="news-card__excerpt">
         {{ offer.desc }}
       </p>
-      <a class="news-card__read-more text-center">Redeem</a>
+      <!-- <a class="news-card__read-more text-center">Redeem</a> -->
     </div>
   </div>
 </div>

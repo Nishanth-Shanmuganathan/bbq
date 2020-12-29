@@ -13,26 +13,32 @@ export class TodayComponent implements OnInit {
   cities!: string[]
   dishes: any[]
   availableLocations: any[]
-
+  isLoading: boolean
   constructor(
     private dataService: DataService,
     private reserveService: ReserveService
   ) {
+    this.isLoading = true
     this.dishes = this.dataService.dishes
+    this.isLoading = !this.dishes.length
     this.availableLocations = this.reserveService.getLocations()
   }
 
   ngOnInit(): void {
     if (!this.dishes.length) {
+      this.isLoading = true
       this.dataService.todayDishes()
         .subscribe(res => {
+          console.log('dish received');
           this.dishes = res
+          this.isLoading = false
         })
       this.reserveService.locationsSubject.subscribe(res => {
         this.availableLocations = res
       })
     }
   }
+
   searchCity(search: any) {
     const searchString = search.target?.value as string
     if (!searchString) { return }
@@ -43,11 +49,6 @@ export class TodayComponent implements OnInit {
     this.cities = this.availableLocations.filter(location => location.name.toLowerCase().startsWith(searchString.toLowerCase()))
     console.log(this.cities);
     this.isCityLoading = false
-    // this.dataService.searchCity(search)
-    //   .subscribe(res => {
-    //     this.cities = res
-    //     this.isCityLoading = false
-    //   })
   }
 
   validateCity(city: string) {

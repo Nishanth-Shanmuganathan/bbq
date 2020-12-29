@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { environment } from './../../environments/environment';
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
@@ -14,14 +15,24 @@ export class AuthService {
   userSubj = new BehaviorSubject<string | null>(this.user)
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
   ) { }
 
   login(data: any) {
     return this.http.post<{ message: string }>(environment.SERVER_URL + 'auth/login', data)
   }
-  register(data: any) {
-    return this.http.post<{ message: string }>(environment.SERVER_URL + 'auth/register', data)
+
+  logout() {
+    this.http.get<{ message: string }>(environment.SERVER_URL + 'auth/logout')
+      .subscribe(res => {
+        console.log(res);
+      }, err => {
+        console.log(err);
+      }, () => {
+        this.router.navigate(['/', 'auth'])
+        localStorage.clear()
+      })
   }
 
 }

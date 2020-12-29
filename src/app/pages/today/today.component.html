@@ -1,4 +1,7 @@
-<div class="row justify-content-center align-items-center pt-5 m-0">
+<div
+  class="row justify-content-center align-items-center pt-5 m-0"
+  *ngIf="!isLoading && dishes.length"
+>
   <div class="col-12 col-sm-10 row justify-content-center">
     <div class="search-bar m-3 col-12 col-sm-10 col-md-5">
       <input
@@ -28,8 +31,35 @@
   </div>
 </div>
 
-<div class="row justify-content-center m-0">
+<div class="row justify-content-center m-0" *ngIf="!isLoading && dishes.length">
   <div class="col-auto" *ngFor="let dish of dishes">
     <app-dish [dish]="dish"></app-dish>
+  </div>
+</div>
+
+<div
+  class="row justify-content-center align-items-center loading-indicator m-0"
+  *ngIf="isLoading"
+>
+  <div class="col-auto">
+    <div class="body">
+      <span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+      <div class="base">
+        <span></span>
+        <div class="face"></div>
+      </div>
+    </div>
+    <div class="longfazers">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <h3 class="font-weight-bold">Fetching resources...</h3>
   </div>
 </div>

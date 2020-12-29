@@ -177,11 +177,13 @@ mat-expansion-panel {
 .confirmation,
 .main {
   background: radial-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)),
-    url(./../../../assets/background/auth-bg.jpg);
+    url(./../../../assets/background/reserve-bg.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   color: white;
+  width: 100%;
+  min-height: 100vh;
 }
 
 .address {
@@ -227,4 +229,13 @@ tr {
   z-index: 100;
   width: 100vw;
   min-height: 100vh;
+}
+
+mat-panel-description {
+  position: absolute;
+  right: 50px;
+}
+
+mat-expansion-panel-header img {
+  border-radius: 100%;
 }

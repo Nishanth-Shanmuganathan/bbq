@@ -1,3 +1,4 @@
+import { AuthService } from './../../services/auth.service';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
@@ -7,9 +8,16 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   @Output() toggleEvent = new EventEmitter()
-  constructor() { }
+
+  constructor(
+    private authService: AuthService
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  logout() {
+    this.authService.logout()
   }
 
   emit() {
