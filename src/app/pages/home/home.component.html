@@ -1,11 +1,11 @@
 <mat-sidenav-container
   class="example-container"
   [hasBackdrop]="true"
-  (backdropClick)="close('backdrop')"
+  (backdropClick)="close()"
 >
   <mat-sidenav
     #sidenav
-    (keydown.escape)="close('escape')"
+    (keydown.escape)="close()"
     disableClose
     fixedInViewport="true"
   >
@@ -17,7 +17,7 @@
           width="120px"
           height="120px"
         />
-        <button mat-icon-button (click)="close('toggle button')">
+        <button mat-icon-button (click)="close()">
           <mat-icon>close</mat-icon>
         </button>
       </div>

@@ -60,7 +60,8 @@ input[type=number] {
   padding-right: 10px;
 }
 
-.custom-book-table {
+.custom-book-table,
+.custom-book-table[disabled] {
   width: 100px;
   height: 100px;
   border-radius: 125px;
@@ -68,7 +69,8 @@ input[type=number] {
   bottom: 0;
   left: 50%;
   transform: translate(-50%, 50%);
-  background-color: orange;
+  background-color: orange !important;
+  color: black;
 }
 
 section {
@@ -145,8 +147,9 @@ mat-expansion-panel {
   padding-right: 0px !important;
 }
 
-::ng-deep .mat-select-arrow {
-  display: none;
+::ng-deep .mat-select-arrow,
+::ng-deep .mat-form-field.mat-focused.mat-primary .mat-select-arrow {
+  color: transparent !important;
 }
 
 .final-cart {

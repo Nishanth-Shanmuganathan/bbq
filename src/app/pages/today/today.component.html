@@ -15,7 +15,7 @@
           [value]="city"
           (click)="validateCity(city)"
         >
-          {{ city }}
+          {{ city.name }}
         </mat-option>
       </mat-autocomplete>
       <button mat-icon-button [ngClass]="{ rotate: isCityLoading }">
@@ -29,7 +29,7 @@
 </div>
 
 <div class="row justify-content-center m-0">
-  <div class="col-auto" *ngFor="let item of ['', '', '', '', '', '', '', '']">
-    <app-dish></app-dish>
+  <div class="col-auto" *ngFor="let dish of dishes">
+    <app-dish [dish]="dish"></app-dish>
   </div>
 </div>

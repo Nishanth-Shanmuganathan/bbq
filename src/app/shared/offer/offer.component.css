@@ -1,14 +1,4 @@
-:host {
-  margin: 0 auto;
-  max-width: 500px;
-  /* display: flex;
-  flex-flow: row wrap;
-  justify-content: center; */
-  padding: 0.5rem;
-}
-
 .news-card {
-  border: 0px solid aqua;
   margin: 0.5rem;
   position: relative;
   height: 20rem;

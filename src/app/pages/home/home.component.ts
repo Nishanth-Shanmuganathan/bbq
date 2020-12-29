@@ -7,15 +7,12 @@ import { MatSidenav } from '@angular/material/sidenav';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  showFiller = false;
   @ViewChild('sidenav') sidenav!: MatSidenav
-  reason!: string
   constructor() { }
 
   ngOnInit(): void {
   }
-  close(reason: string) {
-    this.reason = reason;
+  close() {
     this.sidenav.close();
   }
 }

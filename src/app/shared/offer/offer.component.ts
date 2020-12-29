@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-offer',
@@ -6,7 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./offer.component.css']
 })
 export class OfferComponent implements OnInit {
-
+  @Input() offer!: {
+    name: string,
+    desc: string,
+    imageUrl: string,
+    _id: string,
+    validTill: string
+  }
   constructor() { }
 
   ngOnInit(): void {

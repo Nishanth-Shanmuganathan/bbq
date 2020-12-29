@@ -181,9 +181,7 @@
         class="checkout mt-4 mt-md-0 d-flex align-items-center justify-content-center"
         style="width: 50%; height: 100%; max-width: 400px"
       >
-        <div
-          class="booking-card bg-light p-4 mr-md-5 ml-md-5 position-relative"
-        >
+        <div class="booking-card bg-light p-4 position-relative">
           <button
             *ngIf="mobileBookingTableVisibility && mobile"
             (click)="mobileBookingTableVisibility = false"
@@ -202,14 +200,28 @@
             class="d-block position-relative mt-3"
           >
             <mat-label>Location</mat-label>
-            <mat-select>
-              <mat-option value="option">Option</mat-option>
+            <mat-select
+              [(ngModel)]="booking.location._id"
+              (ngModelChange)="updateLocation(booking.location._id)"
+            >
+              <div *ngFor="let location of availableLocations">
+                <mat-option [value]="location._id">
+                  {{ location.name }}</mat-option
+                >
+              </div>
             </mat-select>
             <mat-icon matSuffix class="text-muted"> location_on </mat-icon>
           </mat-form-field>
           <mat-form-field color="primary" class="d-block position-relative">
             <mat-label>No. of guests</mat-label>
-            <input matInput type="number" min="1" max="9" />
+            <input
+              matInput
+              type="number"
+              min="1"
+              max="9"
+              [(ngModel)]="booking.guests"
+              (ngModelChange)="updateBookingDetails()"
+            />
             <mat-icon matSuffix class="text-muted">
               supervisor_account
             </mat-icon>
@@ -217,29 +229,56 @@
 
           <mat-form-field color="primary" class="d-block position-relative">
             <mat-label>Date</mat-label>
-            <input matInput type="number" min="1" max="9" />
-            <mat-icon matSuffix class="text-muted"> date_range </mat-icon>
+            <input
+              matInput
+              [matDatepicker]="picker"
+              (focus)="picker.open()"
+              (click)="picker.open()"
+              [min]="now"
+              (ngModelChange)="updateBookingDetails()"
+              [(ngModel)]="booking.date"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <!-- <mat-icon matSuffix class="text-muted"> date_range </mat-icon> -->
           </mat-form-field>
           <p class="text-muted">Session</p>
           <mat-chip-list style="width: 100%">
-            <mat-chip color="warn" class="d-inline-flex">Lunch</mat-chip>
-            <mat-chip color="warn" class="d-inline-flex">Dinner</mat-chip>
+            <mat-chip
+              color="warn"
+              class="d-inline-flex"
+              (click)="sessionChange('lunch')"
+              [ngClass]="{ 'bg-dark text-light': booking.session === 'lunch' }"
+              >Lunch</mat-chip
+            >
+            <mat-chip
+              color="warn"
+              class="d-inline-flex"
+              (click)="sessionChange('dinner')"
+              [ngClass]="{ 'bg-dark text-light': booking.session === 'dinner' }"
+              >Dinner</mat-chip
+            >
           </mat-chip-list>
-          <mat-form-field
-            color="primary"
-            class="d-block position-relative mt-3"
-          >
-            <mat-label>Timeslot</mat-label>
-            <mat-select>
-              <mat-option value="option">Option</mat-option>
-            </mat-select>
-            <mat-icon matSuffix class="text-muted"> schedule </mat-icon>
-          </mat-form-field>
+          <p class="text-muted mt-3">Timeslots</p>
+          <mat-chip-list style="width: 100%">
+            <mat-chip
+              *ngFor="let timeslot of availableTimeslots"
+              class="d-inline-flex"
+              (click)="timeslotChange(timeslot)"
+              [ngClass]="{
+                'bg-dark text-light': booking.timeslot === timeslot
+              }"
+              >{{ timeslot }}</mat-chip
+            >
+          </mat-chip-list>
 
           <button
             mat-raised-button
-            (click)="sidenav.toggle()"
             class="custom-book-table d-flex justify-content-center"
+            [disabled]="!bookingValid()"
           >
             <img
               src="./../../../assets/icons/dish.png"

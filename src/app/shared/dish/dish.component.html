@@ -4,27 +4,29 @@
       <div class="card-front">
         <figure>
           <div class="img-bg"></div>
-          <img src="./../../../assets/todays/meat.jpg" alt="Image 2" />
+          <img [src]="dish.imageUrl" [alt]="dish.name" />
           <figcaption class="text-uppercase font-weight-bold">
-            Chettinad Roast
+            {{ dish.name }}
           </figcaption>
         </figure>
 
         <ul style="padding-right: -10px !important">
-          <li>No.4005, HAL 2nd stage</li>
-          <li>100 feet road</li>
-          <li>Indiranagar</li>
-          <li>Bangalore</li>
+          <li *ngFor="let address of dish.location.address">{{ address }}</li>
         </ul>
       </div>
 
       <div class="card-back">
         <figure>
           <div class="img-bg"></div>
-          <img src="./../../../assets/todays/meat.jpg" alt="image-2" />
+          <img [src]="dish.imageUrl" [alt]="dish.name" />
         </figure>
 
-        <button class="today-btn">Reserve</button>
+        <button
+          class="today-btn text-uppercase"
+          (click)="routeToReserve(dish.location._id)"
+        >
+          Reserve
+        </button>
 
         <div class="design-container">
           <span class="design design--1"></span>

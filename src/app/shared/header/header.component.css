@@ -4,7 +4,7 @@
   background: #181818;
 }
 
-@media only screen and (max-width:575px) {
+@media only screen and (max-width:767px) {
   :host {
     height: 100px;
   }

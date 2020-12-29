@@ -8,19 +8,18 @@
       style="width: 100%; height: fit-content"
     >
       <div class="wrapper pl-5">
-        <div class="card bg-dark">
-          <img src="./../../../assets/background/auth-bg.jpg" />
+        <div class="card bg-dark" *ngIf="newHotel">
+          <img
+            [src]="
+              newHotel.imageUrl || './../../../assets/background/auth-bg.jpg'
+            "
+          />
           <div class="descriptions">
-            <h1>John Wick 3</h1>
-            <p>
-              After gunning down a member of the High Table -- the shadowy
-              international assassin's guild -- legendary hit man John Wick
-              finds himself stripped of the organization's protective services.
-              Now stuck with a $14 million bounty on his head, Wick must fight
-              his way through the streets of New York as he becomes the target
-              of the world's most ruthless killers.
+            <h1>{{ newHotel.location | titlecase }}</h1>
+            <p class="mt-3">
+              {{ newHotel.desc }}
             </p>
-            <button class="ad-btn">
+            <button class="ad-btn" (click)="routeToReserve(newHotel._id)">
               <i class="fab fa-youtube"></i>
               Visit
             </button>
@@ -36,38 +35,81 @@
 
         <mat-form-field color="primary" class="d-block position-relative mt-3">
           <mat-label>Location</mat-label>
-          <mat-select>
-            <mat-option value="option">Option</mat-option>
+          <mat-select
+            [(ngModel)]="booking.location._id"
+            (ngModelChange)="updateLocation(booking.location._id)"
+          >
+            <div *ngFor="let location of availableLocations">
+              <mat-option [value]="location._id">
+                {{ location.name }}</mat-option
+              >
+            </div>
           </mat-select>
           <mat-icon matSuffix class="text-muted"> location_on </mat-icon>
         </mat-form-field>
         <mat-form-field color="primary" class="d-block position-relative">
           <mat-label>No. of guests</mat-label>
-          <input matInput type="number" min="1" max="9" />
+          <input
+            matInput
+            type="number"
+            min="1"
+            max="9"
+            [(ngModel)]="booking.guests"
+            (ngModelChange)="updateBookingDetails()"
+          />
           <mat-icon matSuffix class="text-muted"> supervisor_account </mat-icon>
         </mat-form-field>
 
         <mat-form-field color="primary" class="d-block position-relative">
           <mat-label>Date</mat-label>
-          <input matInput type="number" min="1" max="9" />
-          <mat-icon matSuffix class="text-muted"> date_range </mat-icon>
+          <input
+            matInput
+            [matDatepicker]="picker"
+            (focus)="picker.open()"
+            (click)="picker.open()"
+            [min]="now"
+            (ngModelChange)="updateBookingDetails()"
+            [(ngModel)]="booking.date"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <!-- <mat-icon matSuffix class="text-muted"> date_range </mat-icon> -->
         </mat-form-field>
         <p class="text-muted">Session</p>
         <mat-chip-list style="width: 100%">
-          <mat-chip color="warn" class="d-inline-flex">Lunch</mat-chip>
-          <mat-chip color="warn" class="d-inline-flex">Dinner</mat-chip>
+          <mat-chip
+            color="warn"
+            class="d-inline-flex"
+            (click)="sessionChange('lunch')"
+            [ngClass]="{ 'bg-dark text-light': booking.session === 'lunch' }"
+            >Lunch</mat-chip
+          >
+          <mat-chip
+            color="warn"
+            class="d-inline-flex"
+            (click)="sessionChange('dinner')"
+            [ngClass]="{ 'bg-dark text-light': booking.session === 'dinner' }"
+            >Dinner</mat-chip
+          >
         </mat-chip-list>
-        <mat-form-field color="primary" class="d-block position-relative mt-3">
-          <mat-label>Timeslot</mat-label>
-          <mat-select>
-            <mat-option value="option">Option</mat-option>
-          </mat-select>
-          <mat-icon matSuffix class="text-muted"> schedule </mat-icon>
-        </mat-form-field>
+        <p class="text-muted mt-3">Session</p>
+        <mat-chip-list style="width: 100%">
+          <mat-chip
+            *ngFor="let timeslot of availableTimeslots"
+            class="d-inline-flex"
+            (click)="timeslotChange(timeslot)"
+            [ngClass]="{ 'bg-dark text-light': booking.timeslot === timeslot }"
+            >{{ timeslot }}</mat-chip
+          >
+        </mat-chip-list>
 
         <button
           mat-raised-button
           class="custom-book-table d-flex justify-content-center"
+          [disabled]="!bookingValid()"
         >
           <img
             src="./../../../assets/icons/dish.png"
@@ -123,10 +165,15 @@
       </div>
     </div>
   </div>
-  <div class="col-12 d-flex flex-wrap justify-content-center">
-    <app-dish [small]="false"></app-dish>
-    <app-dish [small]="false"></app-dish>
-    <app-dish [small]="false"></app-dish>
+  <div
+    class="col-12 d-flex flex-wrap justify-content-center"
+    *ngIf="topTodaySpecial.length"
+  >
+    <app-dish
+      [small]="false"
+      *ngFor="let todaySpecial of topTodaySpecial"
+      [dish]="todaySpecial"
+    ></app-dish>
   </div>
 </div>
 <div class="row pb-5">
@@ -173,75 +220,11 @@
     </div>
   </div>
   <div class="col-12 d-flex flex-wrap justify-content-center">
-    <div class="content-wrapper">
-      <div class="news-card">
-        <a href="#" class="news-card__card-link"></a>
-        <img
-          src="./../../../assets/offs/chirtmas.jpg"
-          alt="Christmas off"
-          class="news-card__image"
-        />
-        <div class="news-card__text-wrapper">
-          <h2 class="news-card__title">Amazing First Title</h2>
-          <div class="news-card__post-date">Jan 29, 2018</div>
-          <div class="news-card__details-wrapper">
-            <p class="news-card__excerpt">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Est
-              pariatur nemo tempore repellat? Ullam sed officia iure architecto
-              deserunt distinctio, pariatur&hellip;
-            </p>
-            <a href="#" class="news-card__read-more"
-              >Read more <i class="fas fa-long-arrow-alt-right"></i
-            ></a>
-          </div>
-        </div>
-      </div>
-
-      <div class="news-card">
-        <a href="#" class="news-card__card-link"></a>
-        <img
-          src="./../../../assets/offs/christmas-2.jpg"
-          alt=""
-          class="news-card__image"
-        />
-        <div class="news-card__text-wrapper">
-          <h2 class="news-card__title">
-            Amazing Second Title that is Quite Long
-          </h2>
-          <div class="news-card__post-date">Jan 29, 2018</div>
-          <div class="news-card__details-wrapper">
-            <p class="news-card__excerpt">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam
-              obcaecati ex natus nulla rem sequi laborum quod fugit&hellip;
-            </p>
-            <a href="#" class="news-card__read-more"
-              >Read more <i class="fas fa-long-arrow-alt-right"></i
-            ></a>
-          </div>
-        </div>
-      </div>
-
-      <div class="news-card">
-        <a href="#" class="news-card__card-link"></a>
-        <img
-          src="./../../../assets/offs/new-year.jpg"
-          alt=""
-          class="news-card__image"
-        />
-        <div class="news-card__text-wrapper">
-          <h2 class="news-card__title">Amazing Title</h2>
-          <div class="news-card__post-date">Jan 29, 2018</div>
-          <div class="news-card__details-wrapper">
-            <p class="news-card__excerpt">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis
-              beatae&hellip;
-            </p>
-            <a href="#" class="news-card__read-more"
-              >Read more <i class="fas fa-long-arrow-alt-right"></i
-            ></a>
-          </div>
-        </div>
-      </div>
+    <div class="content-wrapper" *ngIf="specialOffers.length">
+      <app-offer
+        *ngFor="let offer of specialOffers"
+        [offer]="offer"
+      ></app-offer>
     </div>
   </div>
 </div>

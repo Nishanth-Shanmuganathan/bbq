@@ -20,8 +20,6 @@ export class AuthGuard implements CanActivate {
     this.authService.tokenSubj.subscribe(res => {
       token = res;
     });
-    console.log(!token);
-
     if (!token) {
       this.router.navigate(['/auth'])
     }
