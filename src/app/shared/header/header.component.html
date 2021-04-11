@@ -40,19 +40,12 @@
       Special Offers
       <hr class="position-absolute" />
     </a>
-    <button class="col-auto" mat-icon-button [mat-menu-trigger-for]="menu">
+    <button
+      class="col-auto"
+      mat-icon-button
+      [routerLink]="['/', 'home', 'profile']"
+    >
       <mat-icon>person</mat-icon>
     </button>
   </div>
 </mat-toolbar>
-
-<mat-menu #menu="matMenu">
-  <button mat-menu-item>
-    <mat-icon>person</mat-icon>
-    <span>My account</span>
-  </button>
-  <button mat-menu-item (click)="logout()">
-    <mat-icon>login</mat-icon>
-    <span>Logout</span>
-  </button>
-</mat-menu>

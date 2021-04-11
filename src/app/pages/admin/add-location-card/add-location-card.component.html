@@ -1,0 +1,35 @@
+<form class="card p-5" [formGroup]="locationDetails" (ngSubmit)="emitData()">
+  <mat-form-field color="primary" class="d-block position-relative mt-2 mb-2">
+    <mat-label>Location</mat-label>
+    <input matInput autocomplete="off" type="text" formControlName="name" />
+    <mat-icon matSuffix class="text-muted"> location_on </mat-icon>
+  </mat-form-field>
+  <mat-form-field color="primary" class="d-block position-relative mt-2 mb-2">
+    <mat-label>Street with landmark</mat-label>
+    <input matInput autocomplete="off" type="text" formControlName="street" />
+    <mat-icon matSuffix class="text-muted"> traffic </mat-icon>
+  </mat-form-field>
+  <mat-form-field color="primary" class="d-block position-relative mt-2 mb-2">
+    <mat-label>Area</mat-label>
+    <input matInput autocomplete="off" type="text" formControlName="area" />
+    <mat-icon matSuffix class="text-muted"> emoji_transportation </mat-icon>
+  </mat-form-field>
+  <mat-form-field color="primary" class="d-block position-relative mt-2 mb-2">
+    <mat-label>City</mat-label>
+    <input matInput autocomplete="off" type="text" formControlName="city" />
+    <mat-icon matSuffix class="text-muted"> location_city </mat-icon>
+  </mat-form-field>
+  <mat-form-field color="primary" class="d-block position-relative mt-2 mb-2">
+    <mat-label>State</mat-label>
+    <input matInput autocomplete="off" type="text" formControlName="state" />
+    <mat-icon matSuffix class="text-muted"> public </mat-icon>
+  </mat-form-field>
+  <button
+    mat-raised-button
+    class="custom-book-table d-flex justify-content-center"
+    [disabled]="locationDetails.invalid"
+  >
+    <mat-icon class="mt-n2 mr-4" style="font-size: 50px">terrain</mat-icon>
+    <p class="mb-0 font-weight-bold">Add Location</p>
+  </button>
+</form>

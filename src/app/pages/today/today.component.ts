@@ -21,6 +21,7 @@ export class TodayComponent implements OnInit {
     this.isLoading = true
     this.dishes = this.dataService.dishes
     this.isLoading = !this.dishes.length
+    this.cities = []
     this.availableLocations = this.reserveService.getLocations()
   }
 
@@ -41,7 +42,9 @@ export class TodayComponent implements OnInit {
 
   searchCity(search: any) {
     const searchString = search.target?.value as string
-    if (!searchString) { return }
+    if (!searchString) {
+      this.cities = this.availableLocations
+    }
     this.isCityLoading = true
     if (!this.availableLocations.length) {
       this.reserveService.getLocationsFromServer()

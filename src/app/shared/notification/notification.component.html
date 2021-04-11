@@ -1,1 +1,8 @@
-<p>notification works!</p>
+<div matDialogContent>
+  <p [ngClass]="{ 'text-center pt-5 pb-4': data.center }">
+    {{ data.message || "An unknown error occurred" }}
+  </p>
+  <button mat-icon-button class="close text-danger" *ngIf="!data.center">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>

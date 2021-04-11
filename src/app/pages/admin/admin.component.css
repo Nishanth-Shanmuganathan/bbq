@@ -1,0 +1,89 @@
+:host {
+  display: block;
+  background: #181818;
+}
+
+.admin {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.search-bar {
+  position: relative;
+}
+
+.search-bar input {
+  width: 100%;
+  height: 50px;
+  border: none;
+  border-radius: 50px;
+  box-shadow: inset 5px 5px 5px silver, 1px 1px 2px silver;
+}
+
+.search-bar button[mat-icon-button] {
+  position: absolute;
+  top: 5px;
+  right: 20px;
+}
+
+.rotate {
+  animation: rotationAnimation 1000ms infinite linear;
+}
+
+@keyframes rotationAnimation {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  50% {
+    transform: rotate(180deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.coolBeans {
+  border: 0px solid currentColor;
+  cursor: pointer;
+  border-radius: 10px;
+  color: rgb(255, 255, 255);
+  font-size: 16px;
+  font-weight: 100;
+  overflow: hidden;
+  padding: 1rem 2rem;
+  position: relative;
+  text-decoration: none;
+  transition: 200ms transform ease-in-out;
+  will-change: transform;
+  z-index: 0;
+}
+
+.coolBeans::after {
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  content: '';
+  display: block;
+  height: 50px;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translate(-100%, 0) rotate(10deg);
+  transform-origin: top left;
+  transition: 200ms transform ease-out;
+  will-change: transform;
+  z-index: -1;
+}
+
+.coolBeans:hover::after {
+  transform: translate(0, 0);
+}
+
+.coolBeans:hover {
+  border: 0px solid transparent;
+  color: #000000;
+  transform: scale(1.05);
+  will-change: transform;
+}

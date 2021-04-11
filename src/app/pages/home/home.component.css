@@ -9,7 +9,7 @@ header {
 
 .router-outlet {
   min-height: calc(100vh - 100px);
-  background-color: #181818;
+  /* background-color: #181818; */
   z-index: -1;
 }
 

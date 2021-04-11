@@ -26,6 +26,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 const MATERIALS = [
   MatIconModule,
@@ -51,7 +52,8 @@ const MATERIALS = [
   MatSelectModule,
   MatBadgeModule,
   MatTabsModule,
-  MatExpansionModule
+  MatExpansionModule,
+  MatSlideToggleModule
 ]
 @NgModule({
   imports: [...MATERIALS],

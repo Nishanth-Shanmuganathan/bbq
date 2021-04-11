@@ -16,7 +16,7 @@ export class ReserveService {
   private lunchTimeSlot: string[]
   private locations!: { name: string, _id: string }[]
   cuisines: any[]
-  locationsSubject = new Subject<[{ name: string, _id: string }]>()
+  locationsSubject = new Subject<{ name: string, _id: string }[]>()
 
   constructor(
     private http: HttpClient,
@@ -61,12 +61,13 @@ export class ReserveService {
     localStorage.setItem('Booking', JSON.stringify(this.bookingDetails))
     this.getBookingValidity()
   }
-
+  emptyBooking() {
+    return new BookingDetails(undefined, { name: '', _id: '' }, '', 'lunch', '')
+  }
   getLocationsFromServer(): void {
     this.http.get<[{ name: string, _id: string }]>(environment.SERVER_URL + 'server/locations')
       .subscribe(res => {
         console.log('location received');
-
         this.locations = res
         this.locationsSubject.next(res)
       })
@@ -84,5 +85,15 @@ export class ReserveService {
     }
     this.setBookingDetails(this.bookingDetails)
     this.router.navigate(['/', 'home', 'reserve'])
+  }
+
+  proceedBooking(data: any) {
+    console.log('booking');
+
+    return this.http.post<any[]>(environment.SERVER_URL + 'server/booking', data)
+  }
+
+  getLocationDetails(id: string) {
+    return this.http.get<{}>(environment.SERVER_URL + 'server/location/' + id)
   }
 }

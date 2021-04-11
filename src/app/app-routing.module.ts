@@ -1,3 +1,5 @@
+import { AdminComponent } from './pages/admin/admin.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 import { ReserveComponent } from './pages/reserve/reserve.component';
 import { SpecialOffersComponent } from './pages/special-offers/special-offers.component';
 import { TodayComponent } from './pages/today/today.component';
@@ -35,12 +37,24 @@ const routes: Routes = [
         path: 'offers',
         component: SpecialOffersComponent
       },
+      {
+        path: 'profile',
+        component: ProfileComponent
+      },
+      {
+        path: 'admin',
+        component: AdminComponent
+      }
     ]
   },
   {
     path: '',
     pathMatch: 'full',
     redirectTo: 'home'
+  },
+  {
+    path: '**',
+    redirectTo: ''
   }
 ];
 

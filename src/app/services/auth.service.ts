@@ -10,14 +10,15 @@ import { BehaviorSubject } from 'rxjs'
 export class AuthService {
 
   token = localStorage.getItem('token')
-  user = localStorage.getItem('user')
+  user = JSON.parse(localStorage.getItem('user') as string)
   tokenSubj = new BehaviorSubject<string | null>(this.token)
-  userSubj = new BehaviorSubject<string | null>(this.user)
+  userSubj = new BehaviorSubject<any | null>(this.user)
 
   constructor(
     private http: HttpClient,
     private router: Router
-  ) { }
+  ) {
+  }
 
   login(data: any) {
     return this.http.post<{ message: string }>(environment.SERVER_URL + 'auth/login', data)

@@ -713,3 +713,10 @@ h6 {
     opacity: 0;
   }
 }
+
+.center {
+  position: absolute;
+  top: 50vw;
+  left: 50vw;
+  transform: translate(0%, -50%);
+}

@@ -67,16 +67,8 @@
           [matRippleColor]="'#ffffff1a'"
           role="navitem"
           class="text-light"
+          [routerLink]="['/', 'home', 'profile']"
           >My Account</mat-list-item
-        >
-        <mat-divider></mat-divider>
-        <mat-list-item
-          matRipple
-          [matRippleColor]="'#ffffff1a'"
-          role="navitem"
-          class="text-light"
-          (click)="logout()"
-          >Logout</mat-list-item
         >
         <mat-divider></mat-divider>
       </mat-list>

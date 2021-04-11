@@ -68,19 +68,144 @@
               </div>
             </div>
 
-            <div class="row mt-4 p-5 justify-content-center">
-              <div class="col-auto mb-5">
+            <div class="row mt-5 pb-5 justify-content-center">
+              <div class="col-12 position-relative" style="min-height: 350px">
+                <div id="card-front">
+                  <div id="shadow"></div>
+                  <div id="image-container">
+                    <span id="amount"
+                      >Paying: <strong>${{ booking.total }}</strong></span
+                    >
+                    <span id="card-image"> </span>
+                  </div>
+                  <!--- end card image container --->
+
+                  <label for="card-number"> Card Number </label>
+                  <input
+                    #input1
+                    autocomplete="off"
+                    type="text"
+                    id="card-number"
+                    placeholder="1234 5678 9101 1112"
+                    maxlength="16"
+                    (input)="clearInput(input1)"
+                  />
+                  <div id="cardholder-container">
+                    <label for="card-holder">Card Holder </label>
+                    <input
+                      autocomplete="off"
+                      type="text"
+                      id="card-holder"
+                      placeholder="e.g. John Doe"
+                      maxlength="16"
+                    />
+                  </div>
+                  <!--- end card holder container --->
+                  <div id="exp-container">
+                    <label for="card-exp"> Expiration </label>
+                    <input
+                      #input3
+                      autocomplete="off"
+                      id="card-month"
+                      type="text"
+                      placeholder="MM"
+                      maxlength="2"
+                      (input)="clearInput(input3)"
+                    />
+                    <input
+                      #input4
+                      autocomplete="off"
+                      id="card-year"
+                      type="text"
+                      placeholder="YY"
+                      maxlength="2"
+                      (input)="clearInput(input4)"
+                    />
+                  </div>
+                  <div id="cvc-container">
+                    <label for="card-cvc"> CVC/CVV</label>
+                    <input
+                      #input5
+                      autocomplete="off"
+                      id="card-cvc"
+                      placeholder="XXX-X"
+                      type="text"
+                      minlength="3"
+                      maxlength="4"
+                      (input)="clearInput(input5)"
+                    />
+                    <p>Last 3 or 4 digits</p>
+                  </div>
+                  <!--- end CVC container --->
+                  <!--- end exp container --->
+                  <button
+                    mat-raised-button
+                    class="mt-5 payment ml-n2"
+                    (click)="proceedPayment()"
+                    [disabled]="isPaying"
+                  >
+                    Proceed to pay
+                  </button>
+                </div>
+                <!--- end card front --->
+                <!-- <div id="card-back">
+                    <div id="card-stripe"></div>
+                  </div> -->
+                <!--- end card back --->
+                <!-- <input
+                    autocomplete="off" type="text" id="card-token" />
+                  <button type="button" id="card-btn">Submit</button> -->
+                <!--- end form container --->
+              </div>
+            </div>
+
+            <div class="row flex-column align-items-center">
+              <div class="col-auto text-center">
                 <button
+                  style="width: 260px"
                   mat-raised-button
-                  (click)="sidenav.toggle()"
-                  class="custom-book-table d-flex justify-content-center"
+                  class="d-flex payment btn-block p-1 m-2 font-weight-bold justify-content-center"
+                  (click)="proceedPayment()"
+                  [disabled]="isPaying"
                 >
                   <img
-                    src="./../../../assets/icons/dish.png"
+                    src="./../../../assets/icons/google-pay.png"
                     width="50px"
                     height="50px"
                   />
-                  <p class="mb-0 font-weight-bold">Book Table</p>
+                  <span class="ml-2">Continue with Google Pay</span>
+                </button>
+              </div>
+              <div class="col-auto text-center">
+                <button
+                  style="width: 260px"
+                  mat-raised-button
+                  class="d-flex payment btn-block p-1 m-2 font-weight-bold justify-content-center"
+                  (click)="proceedPayment()"
+                  [disabled]="isPaying"
+                >
+                  <img
+                    src="./../../../assets/icons/apple-pay.png"
+                    width="50px"
+                    height="50px"
+                  />
+                  <span class="ml-2">Continue with Apple Pay</span>
+                </button>
+              </div>
+              <div class="col-auto text-center">
+                <button
+                  style="width: 260px"
+                  mat-raised-button
+                  class="d-flex payment btn-block p-1 m-2 font-weight-bold justify-content-center"
+                  (click)="proceedPayment()"
+                  [disabled]="isPaying"
+                >
+                  <img
+                    src="./../../../assets/icons/phone-pe.png"
+                    width="50px"
+                    height="50px"
+                  />
+                  <span class="ml-2">Continue with PhonePe</span>
                 </button>
               </div>
             </div>
@@ -221,6 +346,7 @@
           <mat-form-field color="primary" class="d-block position-relative">
             <mat-label>No. of guests</mat-label>
             <input
+              autocomplete="off"
               matInput
               type="number"
               min="1"
@@ -236,6 +362,7 @@
           <mat-form-field color="primary" class="d-block position-relative">
             <mat-label>Date</mat-label>
             <input
+              autocomplete="off"
               matInput
               [matDatepicker]="picker"
               (focus)="picker.open()"

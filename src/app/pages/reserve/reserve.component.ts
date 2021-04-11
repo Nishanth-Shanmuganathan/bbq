@@ -1,6 +1,8 @@
+import { UIService } from './../../services/ui.service';
+import { Router } from '@angular/router';
 import { MatSidenav } from '@angular/material/sidenav';
 import { ReserveService } from './../../services/reserve.service';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { BookingDetails } from 'src/app/models/booking.model';
 
 @Component({
@@ -18,8 +20,12 @@ export class ReserveComponent implements OnInit {
   availableLocations!: { name: string, _id: string }[]
   availableTimeslots!: string[]
   @ViewChild('sidenav') sidenav!: MatSidenav
+  isPaying: boolean = false
+
   constructor(
-    private reserveService: ReserveService
+    private reserveService: ReserveService,
+    private router: Router,
+    private uiService: UIService
   ) {
     this.now = new Date()
     this.booking = this.reserveService.getBookingDetails()
@@ -91,5 +97,30 @@ export class ReserveComponent implements OnInit {
   proceedBooking() {
     console.log(this.booking);
     this.sidenav.open()
+  }
+
+  clearInput(ele: HTMLInputElement) {
+    if (!new RegExp('^[0-9]*$').test(ele.value)) {
+      ele.value = ''
+    }
+  }
+
+  proceedPayment() {
+    this.isPaying = true
+    this.uiService.notify(`Transaction in progress...
+    Please wait patiently...`, true)
+    this.reserveService.proceedBooking(this.booking)
+      .subscribe(res => {
+        this.uiService.close()
+        console.log(res);
+        localStorage.removeItem('Booking')
+        this.reserveService.setBookingDetails(this.reserveService.emptyBooking())
+        this.isPaying = false
+        this.router.navigate(['/', 'home', 'profile'])
+      }, er => {
+        console.log(er);
+        this.uiService.notify('Transaction failed...')
+        this.isPaying = false
+      })
   }
 }

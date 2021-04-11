@@ -20,6 +20,12 @@ import { DishComponent } from './shared/dish/dish.component';
 import { OfferComponent } from './shared/offer/offer.component';
 import { SpecialOffersComponent } from './pages/special-offers/special-offers.component';
 import { ReserveComponent } from './pages/reserve/reserve.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { AdminComponent } from './pages/admin/admin.component';
+import { AddDishCardComponent } from './pages/admin/add-dish-card/add-dish-card.component';
+import { AddOfferCardComponent } from './pages/admin/add-offer-card/add-offer-card.component';
+import { AddLocationCardComponent } from './pages/admin/add-location-card/add-location-card.component';
+import { BookingCardComponent } from './pages/profile/booking-card/booking-card.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +41,12 @@ import { ReserveComponent } from './pages/reserve/reserve.component';
     OfferComponent,
     SpecialOffersComponent,
     ReserveComponent,
+    ProfileComponent,
+    AdminComponent,
+    AddDishCardComponent,
+    AddOfferCardComponent,
+    AddLocationCardComponent,
+    BookingCardComponent,
   ],
   imports: [
     BrowserModule,

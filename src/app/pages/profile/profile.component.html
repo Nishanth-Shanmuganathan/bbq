@@ -1,0 +1,28 @@
+<div class="container-fluid bg-dark position-relative">
+  <div class="row justify-content-center">
+    <div class="col-10 col-md-6 text-center p-5">
+      <img
+        src="./../../../assets/icons/profile-pic.svg"
+        width="100px"
+        height="100px"
+      />
+      <p class="mt-4">{{ user.email }}</p>
+    </div>
+  </div>
+  <div class="row justify-content-center flex-column align-items-center">
+    <div
+      class="col-10 col-md-7 text-dark m-1"
+      *ngFor="let booking of user.bookings"
+    >
+      <app-booking-card [booking]="booking"></app-booking-card>
+    </div>
+  </div>
+  <div class="row position-absolute" style="bottom: 10px; right: 10px">
+    <div class="col-auto">
+      <button mat-raised-button color="warn" (click)="logout()">
+        <mat-icon class="mr-2">login</mat-icon>
+        <span>Logout</span>
+      </button>
+    </div>
+  </div>
+</div>

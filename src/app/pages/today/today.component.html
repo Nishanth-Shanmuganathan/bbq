@@ -9,6 +9,8 @@
         type="text"
         [matAutocomplete]="auto"
         placeholder="Enter the location..."
+        (focus)="searchCity($event)"
+        (click)="searchCity($event)"
         (input)="searchCity($event)"
         #search
         (keyup)="validateCity(search.value)"

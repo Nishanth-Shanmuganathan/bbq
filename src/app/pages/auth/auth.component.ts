@@ -26,8 +26,8 @@ export class AuthComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
-      email: new FormControl('theerannishanth05@gmail.com', [Validators.required, Validators.email]),
-      password: new FormControl('nishanth', [Validators.required, Validators.minLength(6), Validators.maxLength(15)])
+      email: new FormControl('admin@gmail.com', [Validators.required, Validators.email]),
+      password: new FormControl('admins', [Validators.required, Validators.minLength(6), Validators.maxLength(15)])
     })
   }
 
@@ -37,10 +37,10 @@ export class AuthComponent implements OnInit {
     this.authService.login(this.loginForm.value)
       .subscribe(res => {
         this.router.navigate(['/'])
-      }, err => {
-        this.uiService.notify(err.error.error)
-      }, () => {
         this.submitted = false
+      }, err => {
+        this.submitted = false
+        this.uiService.notify(err.error.error.error || 'Login failed...')
       })
   }
 

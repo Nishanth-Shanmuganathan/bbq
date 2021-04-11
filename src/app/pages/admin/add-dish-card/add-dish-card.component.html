@@ -1,0 +1,29 @@
+<form class="card p-5" [formGroup]="dishDetails" (ngSubmit)="emitData()">
+  <mat-form-field color="primary" class="d-block position-relative mt-2 mb-2">
+    <mat-label>Location</mat-label>
+    <mat-select autocomplete="off" formControlName="location">
+      <div *ngFor="let location of locations">
+        <mat-option [value]="location._id"> {{ location.name }}</mat-option>
+      </div>
+    </mat-select>
+    <mat-icon matSuffix class="text-muted"> location_on </mat-icon>
+  </mat-form-field>
+  <mat-form-field color="primary" class="d-block position-relative mt-2 mb-2">
+    <mat-label>Dish name</mat-label>
+    <input matInput autocomplete="off" type="text" formControlName="name" />
+    <mat-icon matSuffix class="text-muted"> fastfood </mat-icon>
+  </mat-form-field>
+  <mat-form-field color="primary" class="d-block position-relative mt-2 mb-2">
+    <mat-label>Image url</mat-label>
+    <input matInput autocomplete="off" type="text" formControlName="imageUrl" />
+    <mat-icon matSuffix class="text-muted"> image </mat-icon>
+  </mat-form-field>
+  <button
+    mat-raised-button
+    class="custom-book-table d-flex justify-content-center"
+    [disabled]="dishDetails.invalid"
+  >
+    <img src="./../../../../assets/icons/dish.png" width="50px" height="50px" />
+    <p class="mb-0 font-weight-bold">Add Dish</p>
+  </button>
+</form>

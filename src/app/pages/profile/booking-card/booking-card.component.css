@@ -1,0 +1,6 @@
+mat-expansion-panel {
+  min-width: 300px;
+  width: 100%;
+  max-width: 700px;
+  margin: auto;
+}

@@ -36,4 +36,14 @@ export class DataService {
         this.offers = res.offers
       }))
   }
+
+  addNewDish(dish: any) {
+    return this.http.post<{}>(environment.SERVER_URL + 'server/dish', dish)
+  }
+  addNewOffer(offer: any) {
+    return this.http.post<{}>(environment.SERVER_URL + 'server/offer', offer)
+  }
+  addNewLocation(city: any) {
+    return this.http.post<{}>(environment.SERVER_URL + 'server/location', city)
+  }
 }

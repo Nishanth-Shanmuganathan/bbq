@@ -1,0 +1,58 @@
+<form class="card p-5" [formGroup]="offerDetails" (ngSubmit)="emitData()">
+  <mat-form-field color="primary" class="d-block position-relative mt-2 mb-2">
+    <mat-label>Offer name</mat-label>
+    <input matInput autocomplete="off" type="text" formControlName="name" />
+    <mat-icon matSuffix class="text-muted"> new_releases </mat-icon>
+  </mat-form-field>
+  <mat-form-field color="primary" class="d-block position-relative mt-2 mb-2">
+    <mat-label>Offer desc</mat-label>
+    <textarea
+      matInput
+      autocomplete="off"
+      type="text"
+      formControlName="desc"
+    ></textarea>
+    <mat-icon matSuffix class="text-muted"> description </mat-icon>
+  </mat-form-field>
+  <mat-form-field color="primary" class="d-block position-relative mt-2 mb-2">
+    <mat-label>Image url</mat-label>
+    <input matInput autocomplete="off" type="text" formControlName="imageUrl" />
+    <mat-icon matSuffix class="text-muted"> image </mat-icon>
+  </mat-form-field>
+  <section class="mb-3">
+    <mat-slide-toggle color="primary" formControlName="isSeasonal" #slider>
+      <span>Seasonal Offer</span>
+    </mat-slide-toggle>
+  </section>
+  <mat-form-field
+    color="primary"
+    class="d-block position-relative"
+    *ngIf="slider.checked"
+  >
+    <mat-label>Date</mat-label>
+    <input
+      matInput
+      [matDatepicker]="picker"
+      (focus)="picker.open()"
+      (click)="picker.open()"
+      [min]="monthLater"
+      formControlName="validTill"
+    />
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+    <!-- <mat-icon matSuffix class="text-muted"> date_range </mat-icon> -->
+  </mat-form-field>
+  <button
+    mat-raised-button
+    class="custom-book-table d-flex justify-content-center"
+    [disabled]="offerDetails.invalid"
+  >
+    <img
+      src="./../../../../assets/icons/offer.png"
+      width="40px"
+      class="mt-3"
+      height="40px"
+    />
+    <p class="mb-0 font-weight-bold">Add Offer</p>
+  </button>
+</form>

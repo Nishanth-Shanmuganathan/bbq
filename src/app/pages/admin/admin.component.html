@@ -1,0 +1,80 @@
+<div class="container-fluid admin">
+  <div class="row justify-content-center pt-3">
+    <div class="col-auto d-flex">
+      <a class="coolBeans" (click)="changeMode('dish')">Add Dish</a>
+    </div>
+    <div class="col-auto d-flex">
+      <a class="coolBeans" (click)="changeMode('offer')">Add Offer</a>
+    </div>
+    <div class="col-auto d-flex">
+      <a class="coolBeans" (click)="changeMode('city')">Add City</a>
+    </div>
+  </div>
+  <div
+    class="row admin__actions mt-3"
+    *ngIf="!cityMode && !dishMode && !offerMode"
+  >
+    <div class="col-12">
+      <div class="row justify-content-center align-items-center pt-2 m-0">
+        <div class="col-12 col-sm-10 row justify-content-center">
+          <div class="search-bar m-3 col-12 col-sm-10 col-md-5">
+            <input
+              class="p-3"
+              type="text"
+              [matAutocomplete]="auto"
+              placeholder="Enter the location..."
+              (focus)="searchCity($event)"
+              (click)="searchCity($event)"
+              (input)="searchCity($event)"
+              #search
+              (keyup)="validateCity(search.value)"
+            />
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option
+                *ngFor="let city of cities"
+                [value]="city.name"
+                (click)="validateCity(city)"
+              >
+                {{ city.name }}
+              </mat-option>
+            </mat-autocomplete>
+            <button mat-icon-button [ngClass]="{ rotate: isCityLoading }">
+              <mat-icon *ngIf="!isCityLoading">place</mat-icon>
+              <mat-icon *ngIf="isCityLoading" class="rotate"
+                >hourglass_bottom</mat-icon
+              >
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="row admin__content justify-content-center pb-5 p-sm-5"
+    *ngIf="!cityMode && !dishMode && !offerMode"
+  >
+    <div class="col-auto" *ngFor="let dish of dishes">
+      <app-dish [dish]="dish"></app-dish>
+    </div>
+  </div>
+  <div class="row justify-content-center pb-5 p-sm-5" *ngIf="dishMode">
+    <div class="col-auto m-5">
+      <app-add-dish-card
+        [locations]="availableLocations"
+        (add)="addDish($event)"
+      ></app-add-dish-card>
+    </div>
+  </div>
+  <div class="row justify-content-center pb-5 p-sm-5" *ngIf="offerMode">
+    <div class="col-auto m-5">
+      <app-add-offer-card (add)="addOffers($event)"></app-add-offer-card>
+    </div>
+  </div>
+  <div class="row justify-content-center pb-5 p-sm-5" *ngIf="cityMode">
+    <div class="col-auto m-5">
+      <app-add-location-card
+        (add)="addLocation($event)"
+      ></app-add-location-card>
+    </div>
+  </div>
+</div>
